@@ -1,0 +1,105 @@
+---
+title: "Intro"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(wior)
+require(tidyverse)
+require(sf)
+require(patchwork)
+
+```
+
+
+```{r}
+data("sample_data")
+```
+
+
+```{r}
+ls()
+```
+
+
+```{r}
+data.points %>% 
+  glimpse()
+```
+
+```{r}
+data.points %>% 
+  class()
+```
+
+```{r}
+
+grids = data.points %>%
+  binning_points(cell_size = 8000, 
+                 band_width = 20000, 
+                 min_obs = 30, 
+                 epsg_code = 32737, 
+                 crs_code = 4326)
+
+```
+
+```{r}
+grids
+```
+
+
+```{r, fig.width=6, fig.height=6, fig.cap="data points overlaid on grids"}
+ 
+ggplot() +
+  geom_sf(data = grids, fill = "lightgreen", alpha = .2) +
+  geom_sf(data = data.points) +
+  scale_fill_gradientn(name = "Events",colours = oce::oce.colorsPalette(120))
+
+
+```
+
+```{r, fig.width=6, fig.height=6}
+obs = ggplot() +
+  geom_sf(data = grids, aes(fill = nbObs), color = "ivory") +
+  scale_fill_gradientn(name = "Events",colours = oce::oce.colorsPalette(120))
+
+obs
+```
+
+
+```{r, fig.width=8, fig.height=8}
+catch25 = ggplot() +
+  geom_sf(data = grids %>% filter(quantile == "0.25"), aes(fill = data), color = "ivory") +
+  scale_fill_gradientn(name = "catch-25",colours = oce::oce.colors9A(120))
+
+obs + catch25
+```
+
+
+```{r, fig.width=8, fig.height=8}
+catch50 = ggplot() +
+  geom_sf(data = grids %>% filter(quantile == "0.5"), aes(fill = data), color = "ivory")+
+  scale_fill_gradientn(name = "catch-50", colours = oce::oce.colors9A(120))
+
+obs + catch50
+```
+
+
+```{r, fig.width=8, fig.height=8}
+catch90 = ggplot() +
+  geom_sf(data = grids %>% filter(quantile == "0.9"), aes(fill = data), color = "ivory")+
+  scale_fill_gradientn(name = "catch-90",colours = oce::oce.colors9A(120))
+
+obs + catch90
+```

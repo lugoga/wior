@@ -1,0 +1,41 @@
+---
+title: "Untitled"
+author: "Masumbuko Semba"
+date: "10/26/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+ctd = oce::read.ctd("e:/Data Manipulation/saphire/april-hydrographic/ctd_april20/CTDPemba2020034.cnv")
+
+ctd = ctd %>% oce::ctdTrim(method = "downcast") %>%
+  oce::ctdDecimate(p = 2) 
+
+ctd.tb = ctd@data %>% tibble::as_tibble()
+```
+
+
+```{r}
+
+ggplot(data = ctd.tb, 
+       aes(x = temperature, y = pressure))+
+  geom_path() +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(), 
+        panel.grid.major = element_line(linetype = 3, colour = "grey85"),
+        axis.text = element_text(size = 10, color = 1), 
+        axis.title = element_text(size = 12))+
+  scale_x_continuous(position = "top", name = expression(Temperature~(degree*C)),
+                     breaks = seq(ctd.tb %>% pull(temperature) %>% min(), 
+                                  ctd.tb %>% pull(temperature) %>% max(), 
+                                  length.out = 5) %>% round(2))+
+  scale_y_reverse(name = "Depth [m]",breaks = seq(ctd.tb %>% pull(pressure) %>% min(), 
+                                  ctd.tb %>% pull(pressure) %>% max(), 
+                                  length.out = 5) %>% round(2))
+
+```
+

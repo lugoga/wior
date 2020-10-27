@@ -1,16 +1,39 @@
 Package: wior
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Easy Tidy and Process Oceanographic Data
+Version: 1.0.0.0
+Date: 2020-10-27
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    c(person(given = "Masumbuko",
+           family = "Semba",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "first.lugosemba@gmail.com",
+           comment = c(ORCID = "https://orcid.org/0000-0002-5002-9747")),
+    person(given = "Nyamisi",
+           family = "Peter",
+           role = "aut",
+           email = "first.nyamisip@gmail.com",
+           comment = c(ORCID = "https://orcid.org/0000-0002-4376-2588")))
+Description: *wior* is a package intended to transform and process large, complex and diverse oceanographic data acquired through satellite or instrument and turn them into a tibble, an easy way to handle and process data format in R.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Imports: 
+    broom,
+    dplyr,
+    magrittr,
+    oce,
+    ggplot2,
+    metR,
+    tidyverse,
+    htmltools,
+    htmltools,
+    sf,
+    btb,
+    tibble
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
