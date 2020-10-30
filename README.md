@@ -78,5 +78,16 @@ ctd %>%
 # ... with 56 more rows, and 1 more variable: fluorescence <dbl>
 ```
 
-We see that we got a You can read more in the vignettes: [Introduction
-to wior](https://github.com/lugoga/wior/blob/main/Intro.html).
+We see that we got a tabular format vertical profile of the CTD cast
+with all the variable. You can read more of the functions in this
+package through the documents of [Introduction to
+wior](https://github.com/lugoga/wior/blob/main/Intro.html) and [package
+manual](https://github.com/lugoga/wior/blob/main/wior_manual.pdf).
+
+## Citation
+
+Please cite the package when you make use of its function. You can cite
+in the format here below:
+
+> Masumbuko Semba and Nyamisi Peter (2020). *wior*: Easy Tidy and
+> Process Oceanographic Data. R package version 0.0.0.1.
