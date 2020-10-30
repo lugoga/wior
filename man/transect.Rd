@@ -4,7 +4,7 @@
 \alias{transect}
 \title{Create transect from vector of longitude and latitude}
 \usage{
-transect(lon, lat, n)
+transect(lon = lon, lat = lat, n = 3)
 }
 \arguments{
 \item{lon}{a vector with minimum and maximum value of longitude}

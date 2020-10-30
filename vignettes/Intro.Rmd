@@ -1,10 +1,24 @@
 ---
-title: "Intro"
-output: rmarkdown::html_vignette
+title: "Gridding irregular spatial points into bins"
+author: "Masumbuko Semba"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: true
+    fig_caption: yes
+    fig_width: 5
+    fig_height: 5
+    dpi: 72
+
 vignette: >
   %\VignetteIndexEntry{Intro}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r, include = FALSE}
@@ -12,7 +26,19 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+options(rmarkdown.html_vignette.check_title = FALSE)
 ```
+
+# Introduction
+
+**Binning** is a way to group a number of more or less continuous values into a smaller number of "bins". For example, if you have data about a group of people, you might want to arrange their ages into a smaller number of age intervals.
+
+**Statistical data binning** is a way to group numbers of more or less continuous values into a smaller number of "bins". For example, if you have data about a group of people, you might want to arrange their ages into a smaller number of age intervals (for example, grouping every five years together). It can also be used in [multivariate statistics](https://en.wikipedia.org/wiki/Multivariate_statistics "Multivariate statistics"), binning in several dimensions at once.
+
+## Packages
+
+Our **wior** package has a `binning_points` function that is capable of binning and computed weighted means of the continuous values at 25^th^ , 50^th^ and 90^th^ quantiles. This allows the analyst to explore the distribution of the weighted values in each bin at the quantile of choice. To work with the **wior** package, we need to load other packages in the session using either `library` or `require` function.
 
 ```{r setup}
 library(wior)
@@ -22,26 +48,39 @@ require(patchwork)
 
 ```
 
+## Sample data
+
+For the purpose of this vignette, we will use the sample data that is bundled in this package. You can load the data using the chunk below;
 
 ```{r}
 data("sample_data")
 ```
 
+You can check the list of dataset that comes with the sample\_data with `ls()` function
 
 ```{r}
 ls()
 ```
 
+You can also check the internal structure of the dataset with `glimpse` function from **dplyr** package.
 
 ```{r}
 data.points %>% 
   glimpse()
 ```
 
+The dataset has 400 observations and 3 variables. To identify the type of the file, use `class` function
+
 ```{r}
 data.points %>% 
   class()
 ```
+
+You will notice that the `data.points` dataset is a *simple feature*---synonymous with a widely used spatial ESRI data format *shapefile* . We are all set
+
+## Gridding irregular points
+
+We now need to bin the data points into regular grids
 
 ```{r}
 
@@ -58,6 +97,7 @@ grids = data.points %>%
 grids
 ```
 
+## Visualize
 
 ```{r, fig.width=6, fig.height=6, fig.cap="data points overlaid on grids"}
  
@@ -77,7 +117,6 @@ obs = ggplot() +
 obs
 ```
 
-
 ```{r, fig.width=8, fig.height=8}
 catch25 = ggplot() +
   geom_sf(data = grids %>% filter(quantile == "0.25"), aes(fill = data), color = "ivory") +
@@ -85,7 +124,6 @@ catch25 = ggplot() +
 
 obs + catch25
 ```
-
 
 ```{r, fig.width=8, fig.height=8}
 catch50 = ggplot() +
@@ -95,7 +133,6 @@ catch50 = ggplot() +
 obs + catch50
 ```
 
-
 ```{r, fig.width=8, fig.height=8}
 catch90 = ggplot() +
   geom_sf(data = grids %>% filter(quantile == "0.9"), aes(fill = data), color = "ivory")+
@@ -103,3 +140,54 @@ catch90 = ggplot() +
 
 obs + catch90
 ```
+
+
+# Converting simple feature to tibble
+
+Sometimes you may wish to work in tibble. However, the only dataset you have is simple feature. Though the simple feature contain attributes information that describe or characterize the feature. But when you may want to only remain with the tibble with their geographical position and drop the geometry attributes in simple feature.  The **wior** package has two functions that can assist you with this
+
+## Change point to tibble
+As the name of `point_tb` imply, this function change point feature into a tible dataset. let us see how
+
+First we explore the dataset
+```{r}
+data("sample_data")
+data.points
+```
+
+It is a simple feature with one variable (i.e catch) and 400 observation. We also see that the coordinate information, which are in degree decimal are embedded in the geometry. Let us have a corresponding tibble from this simple feature with `point_tb` function
+
+```{r}
+point.tb = data.points %>% 
+  point_tb()
+
+point.tb
+```
+
+## Polygon to tibble
+The other function that **wior** package offers is to change from polygon to tibble. This happens sometimes when you want for instance to map and label polygon. You need to extract the centroid point of each polygon and then stitch the attributes to them for you to label them on the map. Let us use a simple feature that represent 51 countries of Africa.
+
+```{r}
+africa
+```
+
+You notice that is a multipolygon, to turn this into tibble, we use a `polygon_tb` function
+
+```{r}
+africa.tb = africa %>% 
+  polygon_tb()
+
+africa.tb
+```
+
+```{r}
+ggplot() +
+  geom_sf(data = africa %>% filter(subregion == "Eastern Africa")) +
+  ggrepel::geom_text_repel(data = africa.tb %>% filter(subregion == "Eastern Africa"),
+                           aes(lon,lat, label = name_long))+
+  theme_minimal()
+```
+
+
+
+## citation {-}

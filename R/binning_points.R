@@ -1,13 +1,13 @@
 
 
-#' Title A function to bin irregular simple feature into grids and weight the variables in each grid
+#' Bin irregular simple feature into grids and weight the variables in each grid
 #'
 #' @param sf_object a simple feature of irregular points
 #' @param cell_size the grid resolution in meters
 #' @param band_width the band radius of searching for gridding in meters
 #' @param min_obs minimum observation for smoothing should be integer
-#' @param epsg_code the Universal Transeverse Mercator code eg 32737
-#' @param crs_code the Geographical Coordianate System code eg 4326
+#' @param epsg_code the Universal Transverse Mercator code example 32737
+#' @param crs_code the Geographical Coordinate System code example 4326
 #'
 #' @return a simple feature of polygons
 #' @export

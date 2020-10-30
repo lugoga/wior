@@ -2,7 +2,7 @@
 % Please edit documentation in R/cnv_tibble.R
 \name{cnv_tibble}
 \alias{cnv_tibble}
-\title{Convert binary vertical data to tibble}
+\title{Convert CTD profile data to tibble}
 \usage{
 cnv_tibble(cnv = cnv, interval = 2)
 }
@@ -12,11 +12,11 @@ cnv_tibble(cnv = cnv, interval = 2)
 \item{interval}{depth interval to create standard depth}
 }
 \value{
-a tibble with temperature, depth conductivity as standard CTD variables and additional variables depending on the sensors configured in the insturment
+a tibble with temperature, depth conductivity as standard CTD variables and additional variables depending on the sensors configured in the instrument
 }
 \description{
-Convert binary vertical data to tibble
+Convert CTD profile data to tibble
 }
 \examples{
-
+#'
 }

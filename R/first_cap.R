@@ -2,7 +2,7 @@
 #'
 #' @param x a vector containing string or strings
 #'
-#' @return a vector of character(s) with each word begin with a captial letter
+#' @return a vector of character(s) with each word begin with a capital letter
 #' @export
 #'
 #' @examples

@@ -10,7 +10,7 @@ first_cap(x)
 \item{x}{a vector containing string or strings}
 }
 \value{
-a vector of character(s) with each word begin with a captial letter
+a vector of character(s) with each word begin with a capital letter
 }
 \description{
 Capitalizing first letter

@@ -2,7 +2,7 @@
 % Please edit documentation in R/binning_points.R
 \name{binning_points}
 \alias{binning_points}
-\title{Title A function to bin irregular simple feature into grids and weight the variables in each grid}
+\title{Bin irregular simple feature into grids and weight the variables in each grid}
 \usage{
 binning_points(
   sf_object = data.points,
@@ -22,13 +22,13 @@ binning_points(
 
 \item{min_obs}{minimum observation for smoothing should be integer}
 
-\item{epsg_code}{the Universal Transeverse Mercator code eg 32737}
+\item{epsg_code}{the Universal Transverse Mercator code example 32737}
 
-\item{crs_code}{the Geographical Coordianate System code eg 4326}
+\item{crs_code}{the Geographical Coordinate System code example 4326}
 }
 \value{
 a simple feature of polygons
 }
 \description{
-Title A function to bin irregular simple feature into grids and weight the variables in each grid
+Bin irregular simple feature into grids and weight the variables in each grid
 }

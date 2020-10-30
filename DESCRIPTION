@@ -1,7 +1,7 @@
 Package: wior
 Title: Easy Tidy and Process Oceanographic Data
-Version: 1.0.0.0
-Date: 2020-10-27
+Version: 0.0.0.1
+Date: 2020-10-28
 Authors@R: 
     c(person(given = "Masumbuko",
            family = "Semba",
@@ -31,9 +31,15 @@ Imports:
     htmltools,
     sf,
     btb,
-    tibble
+    tibble,
+    patchwork,
+    rerddap,
+    lubridate,
+    stats,
+    tidyr
 Suggests: 
     knitr,
-    rmarkdown,
-    testthat
+    rmarkdown
 VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)

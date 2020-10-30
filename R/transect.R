@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-transect = function(lon, lat, n){
+transect = function(lon = lon, lat = lat, n = 3){
 
   metR::as.path(x = lon,
                 y = lat,
