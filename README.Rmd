@@ -39,7 +39,7 @@ require(wior)
 ctd = wior::cnv_tibble(cnv = "data/dstn054.cnv", interval = 10)
 ```
 
-We can then have 
+We can then have  glimpse of the dataset
 ```{r, warning=FALSE, message=FALSE, comment=""}
 
 ctd %>% 
@@ -48,5 +48,5 @@ ctd %>%
   dplyr::select(time, pressure, temperature2:fluorescence)
 
 ```
-
+We see that we got a 
 You can read more in the vignettes: [Introduction to wior](https://github.com/lugoga/wior/blob/main/Intro.html).

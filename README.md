@@ -54,7 +54,7 @@ require(wior)
 ctd = wior::cnv_tibble(cnv = "data/dstn054.cnv", interval = 10)
 ```
 
-We can then have
+We can then have glimpse of the dataset
 
 ``` r
 
@@ -78,5 +78,5 @@ ctd %>%
 # ... with 56 more rows, and 1 more variable: fluorescence <dbl>
 ```
 
-You can read more in the vignettes: [Introduction to
-wior](https://github.com/lugoga/wior/blob/main/Intro.html).
+We see that we got a You can read more in the vignettes: [Introduction
+to wior](https://github.com/lugoga/wior/blob/main/Intro.html).
