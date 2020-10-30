@@ -41,39 +41,41 @@ through the steps to process binary data from the instrument before is
 in the right format for use. However, with `cnv_tibble` function from
 **wior** package, that process is accomplished with one line of code and
 you get tabular format with all the variables measured with the
-instruement.
+instrument. We simply parse `cnv_tibble(cnv = "data/dstn054.cnv",
+interval = 10)` whtere `cnv` is the path of the file and `interval` is
+the standard depth you with the vertical profile to have. For this case
+I have used 10 as standard depth, which mean after every ten meters, a
+mean values is computed and create a binned profile at ten meter
+interva.
 
 ``` r
 require(wior)
-#> Loading required package: wior
 
-ctd = wior::cnv_tibble(cnv = "e:/Data Manipulation/ctd_algoa/dstn052.cnv", interval = 10)
-#> Warning in cnvName2oceName(lines[nameLines[iline]], columns, debug = debug - :
-#> unrecognized SBE name 'obs'; consider using 'columns' to define this name
-#> Warning in read.ctd.sbe(file, columns = columns, station = station, missingValue
-#> = missingValue, : this CNV file has temperature in the IPTS-68 scale, and this
-#> is stored in the object; note that [["temperature"]] and the sw* functions will
-#> convert to the modern ITS-90 value
+ctd = wior::cnv_tibble(cnv = "data/dstn054.cnv", interval = 10)
+```
 
-ctd %>% dplyr::slice(1:12)
-#> # A tibble: 12 x 17
-#>    time                 scan pressure  depth temperature temperature2
-#>    <dttm>              <dbl>    <dbl>  <dbl>       <dbl>        <dbl>
-#>  1 2004-08-19 13:33:31  316.        0   4.48        25.2         25.2
-#>  2 2004-08-19 13:33:31 1052.       10  10.4         25.2         25.2
-#>  3 2004-08-19 13:33:31 1374.       20  20.4         25.1         25.0
-#>  4 2004-08-19 13:33:31 1664.       30  30.3         25.0         25.0
-#>  5 2004-08-19 13:33:31 2013.       40  40.3         25.0         24.9
-#>  6 2004-08-19 13:33:31 2426.       50  50.2         24.8         24.8
-#>  7 2004-08-19 13:33:31 2722.       60  60.2         24.5         24.5
-#>  8 2004-08-19 13:33:31 3026.       70  70.1         24.0         24.0
-#>  9 2004-08-19 13:33:31 3361.       80  80.0         23.1         23.1
-#> 10 2004-08-19 13:33:31 3717.       90  90.0         22.0         22.0
-#> 11 2004-08-19 13:33:31 4108.      100  99.9         21.3         21.3
-#> 12 2004-08-19 13:33:31 4486.      110 110.          20.5         20.5
-#> # ... with 11 more variables: conductivity <dbl>, salinity <dbl>, oxygen <dbl>,
-#> #   fluorescence <dbl>, obs <dbl>, spar <dbl>, par <dbl>, v2 <dbl>,
-#> #   salinity2 <dbl>, density <dbl>, soundSpeed <dbl>
+We can then have
+
+``` r
+
+ctd %>% 
+  dplyr::mutate(dplyr::across(is.numeric,round,2)) %>% 
+  # dplyr::slice(1:12) %>%
+  dplyr::select(time, pressure, temperature2:fluorescence)
+# A tibble: 66 x 7
+   time                pressure temperature2 conductivity salinity oxygen
+   <dttm>                 <dbl>        <dbl>        <dbl>    <dbl>  <dbl>
+ 1 2004-08-19 17:39:39        0         25.1         5.3      34.9   4.64
+ 2 2004-08-19 17:39:39       10         25.1         5.3      34.9   4.64
+ 3 2004-08-19 17:39:39       20         25.0         5.29     34.9   4.65
+ 4 2004-08-19 17:39:39       30         24.8         5.27     34.9   4.47
+ 5 2004-08-19 17:39:39       40         24.7         5.26     34.9   4.36
+ 6 2004-08-19 17:39:39       50         24.7         5.26     34.9   4.34
+ 7 2004-08-19 17:39:39       60         24.7         5.26     34.9   4.33
+ 8 2004-08-19 17:39:39       70         24.5         5.24     34.9   4.27
+ 9 2004-08-19 17:39:39       80         24.0         5.2      34.9   4.14
+10 2004-08-19 17:39:39       90         23.5         5.15     35.0   3.94
+# ... with 56 more rows, and 1 more variable: fluorescence <dbl>
 ```
 
 You can read more in the vignettes: [Introduction to
