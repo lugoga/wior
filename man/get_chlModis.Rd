@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_chlModis.R
 \name{get_chlModis}
 \alias{get_chlModis}
-\title{Download MODIS chlorophyll at 4 km resolution}
+\title{Download MODIS chlorophyll}
 \usage{
 get_chlModis(lon.min, lon.max, lat.min, lat.max, t1, t2, level = 1)
 }
@@ -25,5 +25,14 @@ get_chlModis(lon.min, lon.max, lat.min, lat.max, t1, t2, level = 1)
 a tibble
 }
 \description{
-Download MODIS chlorophyll at 4 km resolution
+The function help to download gridded data of chlorophyll-a at 4 kilometer resolution around the world. The data is retrieved from the ERDDAP server and you can obtain data at any location on the the major oceans and lakes
+}
+\examples{
+\dontrun{
+require(wior
+chl = get_chlModis(lon.min = 38.5,lon.max = 40, lat.min = -6, lat.max = -4,t1 = "2018-02-28", t2 = "2018-03-30", level = 3)
+}
+}
+\author{
+Masumbuko Semba
 }

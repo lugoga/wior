@@ -15,5 +15,5 @@ outlier_remove(data, x)
 A tibble with only observations after removing rows of outliers
 }
 \description{
-Remove observations of a variables detected as outlier in a data frame
+outliers are values that deviate so much from other observations.
 }

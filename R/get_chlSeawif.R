@@ -1,5 +1,7 @@
 
-#' Download SeaWIFS chlorophyll at 11 km resolution near equator
+#' Download SeaWIFS chlorophyll
+#'@author Masumbuko Semba
+#'@description The function help to download gridded data of chlorophyll-a at 9 kilometer resolution around the world. The data is retrieved from the ERDDAP server and you can obtain data at any location on the the major oceans and lakes
 #'
 #' @param lon.min a numeric minimum longitude value
 #' @param lon.max a numeric maximum longitude value
@@ -13,6 +15,11 @@
 #' @export
 #'
 #' @examples
+#'\dontrun{
+#' require(wior)
+#' chl = get_chlSeawif(lon.min = 38.5,lon.max = 40, lat.min = -6, lat.max = -4,t1 = "2008-02-28", t2 = "2008-03-30", level = 2)
+#'}
+#'
 get_chlSeawif = function(lon.min, lon.max, lat.min, lat.max, t1, t2, level = 1){
 
 

@@ -36,7 +36,13 @@ Imports:
     rerddap,
     lubridate,
     stats,
-    tidyr
+    tidyr,
+    raster,
+    cowplot,
+    stars,
+    cubelyr,
+    worldmet,
+    stringr
 Suggests: 
     knitr,
     rmarkdown

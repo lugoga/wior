@@ -2,16 +2,31 @@
 % Please edit documentation in R/point_tb.R
 \name{point_tb}
 \alias{point_tb}
-\title{Convert simple point feature into a tibble format based on original coordinate system (UTM or GCS)}
+\title{Convert simple point feature into a tibble}
 \usage{
 point_tb(x)
 }
 \arguments{
-\item{A}{point simple feature.}
+\item{a}{point simple feature format is the only format accepted.}
 }
 \value{
 It return a tibble containing the longitude and latitude and all the variables present in the sf object. If the original sf object was in Universal Transverse Mercator (UTM), you get the coordinates in meters and if in World Geodetic Cooridante (WGS), you get coordinate in degree. So you need to transform your simple feature in advance before based on which output you intend to get
 }
 \description{
-Convert simple point feature into a tibble format based on original coordinate system (UTM or GCS)
+A wrapper function that convert point simple feature to a tibble. The function drop the geometry field and transform it to make columns of longitude and latitude. So you get a tibble of coordinates and the attributes from the simple feature in tidy format
+
+It depend on point simple feature and the output format is based on original coordinate system (UTM or GCS). It return a tibble containing the longitude and latitude and all the variables present in the sf object. If the original sf object was in Universal Transverse Mercator (UTM), you get the coordinates in meters and if in World Geodetic Cooridante (WGS), you get coordinate in degree. So you need to transform your simple feature in advance before based on which output you intend to get
+}
+\examples{
+\dontrun{
+require(wior)
+data("sample_data")
+# check the list of data
+ls()
+data.points \%>\% class()
+data.points \%>\% point_tb()
+}
+}
+\author{
+Masumbuko Semba
 }

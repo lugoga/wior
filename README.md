@@ -1,11 +1,22 @@
 
 # wior <img src="man/graphics/wior.svg" align="right"/>
 
-**wior** packages several functions and utilities that make R better for
-handling oceanographic data in the tidy data paradigm. It started mostly
-as a packaging of assorted wrappers and tricks that I wrote for my day
-to day work as a researcher in oceanographic sciences at the Institute
-of Marine Sciences, Zanzibar.
+One of the major challenge of the digital age is handling large amount
+of data that are generated. Marine and freshwater scientist are not left
+behind with these challenges. They spend most of their time searching
+the right data to use in their projects. These data are provided in
+various format that makes data preparation and manipulating even harder
+than the time of obtaining them. Indeed, many find it the most tedious
+and least enjoyable part of their work. Therefore, we decided to develop
+a unified package in R—a Language and Environment for Statistical
+Computing called **wior**.
+
+The main goal of developing this package hinges to provide a way of
+tackling the data access and manipulating data problem that has hindered
+scientist, particularly in the western Indian Ocean region. **wior**
+packages several functions and utilities that make R better for handling
+oceanographic data in the tidy data paradigm. The package will ease the
+burden of getting your data in the right format ready for your project.
 
 The packages is basically developed to help marine and freshwater
 scientist access a large and varied format of in-situ and satellite data

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_chlSeawif.R
 \name{get_chlSeawif}
 \alias{get_chlSeawif}
-\title{Download SeaWIFS chlorophyll at 11 km resolution near equator}
+\title{Download SeaWIFS chlorophyll}
 \usage{
 get_chlSeawif(lon.min, lon.max, lat.min, lat.max, t1, t2, level = 1)
 }
@@ -25,5 +25,15 @@ get_chlSeawif(lon.min, lon.max, lat.min, lat.max, t1, t2, level = 1)
 a tibble
 }
 \description{
-Download SeaWIFS chlorophyll at 11 km resolution near equator
+The function help to download gridded data of chlorophyll-a at 9 kilometer resolution around the world. The data is retrieved from the ERDDAP server and you can obtain data at any location on the the major oceans and lakes
+}
+\examples{
+\dontrun{
+require(wior)
+chl = get_chlSeawif(lon.min = 38.5,lon.max = 40, lat.min = -6, lat.max = -4,t1 = "2008-02-28", t2 = "2008-03-30", level = 2)
+}
+
+}
+\author{
+Masumbuko Semba
 }

@@ -1,5 +1,5 @@
 #' Remove observations of a variables detected as outlier in a data frame
-#'
+#'@description outliers are values that deviate so much from other observations.
 #' @param x a variable to remove outlier
 #' @param data A data frame
 #'
