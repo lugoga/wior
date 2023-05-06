@@ -1,0 +1,32 @@
+Package: wior
+Title: Easy Tidy and Process Oceanographic Data
+Version: 0.0.0.9000
+Date: 2023-05-06
+Authors@R: 
+    c(person(given = "Masumbuko",
+           family = "Semba",
+           role = c("aut", "cre"),
+           email = "first.lugosemba@gmail.com",
+           comment = c(ORCID = "https://orcid.org/0000-0002-5002-9747")),
+    person(given = "Nyamisi",
+           family = "Peter",
+           role = "aut",
+           email = "first.nyamisip@gmail.com",
+           comment = c(ORCID = "https://orcid.org/0000-0002-4376-2588")))
+Description: wior wior is a software package designed to facilitate the transformation and processing of vast and intricate oceanographic data obtained from satellites or instruments. Its primary objective is to convert this data into a tibble format, which is a convenient and straightforward way to manage and manipulate data in R. wior is particularly useful for handling complex and diverse oceanographic data, as it streamlines the process of analyzing and interpreting this information. By utilizing wior, researchers and scientists can save valuable time and resources, ultimately leading to more efficient and accurate analyses. Overall, wior is a valuable tool for anyone working with large quantities of oceanographic data..
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Imports: 
+    descriptr,
+    dplyr,
+    janitor,
+    lubridate,
+    magrittr,
+    metR,
+    oce,
+    rerddap,
+    rsoi,
+    stringr,
+    worldmet
